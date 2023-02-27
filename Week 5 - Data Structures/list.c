@@ -14,21 +14,14 @@ int main(void){
 
     // More code and stuff of a program  or smth, doesn't matter
 
-    int *tmp = malloc(4 * sizeof(int));
+    int *tmp = realloc(list, 4 * sizeof(int));
 
     if (tmp == NULL){
         free(list);
         return 1;
     }
-
-    for (int i = 0; i < 3; i++){
-        tmp[i] = list[i];
-    }
-    tmp[3] = 4;
-
-    free(list);
-
     list = tmp;
+    list[3] = 4;
 
     for (int i = 0; i < 4; i++){
         printf("%i\n", list[i]);
