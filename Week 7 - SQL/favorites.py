@@ -12,5 +12,6 @@ with open("favorites.csv", "r") as file:
         else:
             counts[favoriteLanguage] = 1
 
-for favorites in sorted(counts, key=lambda language: counts[language], reverse=True):
-    print(f"{favorites}: {counts[favorites]}")
+favorite = input("Favorite: ")
+if favorite in counts:
+    print(f"{favorite}: {counts[favorite]}")
