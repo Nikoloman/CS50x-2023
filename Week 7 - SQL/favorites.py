@@ -3,20 +3,14 @@ import csv
 with open("favorites.csv", "r") as file:
     reader = csv.DictReader(file)
 
-    scratch = 0
-    c = 0
-    python = 0
-
+    counts = {}
     for row in reader:
         favoriteLanguage = row["language"]
         
-        if favoriteLanguage == "Scratch":
-            scratch += 1
-        elif favoriteLanguage == "C":
-            c += 1
-        elif favoriteLanguage == "Python":
-            python += 1
+        if favoriteLanguage in counts:
+            counts[favoriteLanguage] += 1
+        else:
+            counts[favoriteLanguage] = 1
 
-print(f"Scratch: {scratch}")
-print(f"C: {c}")
-print(f"Python: {python}")
+for favorites in sorted(counts, key=lambda language: counts[language], reverse=True):
+    print(f"{favorites}: {counts[favorites]}")
